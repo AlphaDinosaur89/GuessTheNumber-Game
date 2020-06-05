@@ -1,7 +1,5 @@
 #!/bin/bash
 
-source /opt/Alphalib/alphalib.sh
-
 numb="$RANDOM"
 START="1"
 ext="ext"
@@ -27,7 +25,9 @@ echo ""
 echo "To exit the game type ext or press ctrl+c"
 echo ""
 
-pause
+read -s -n 1 -p "Press any key to continue . . .";
+echo "";
+
 clear
 
 SECONDS="0"
