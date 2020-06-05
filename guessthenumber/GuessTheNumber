@@ -34,7 +34,7 @@ SECONDS="0"
 
 while (( $START == 1 )); do
 
-  echo "You shall put your guess now"
+  echo "put your guess now"
 
   read guess
 
