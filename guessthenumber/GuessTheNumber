@@ -50,7 +50,7 @@ while (( $START == 1 )); do
     sleep 5s
     exit
 
-  fi
+  fi 2> /dev/null
 
   if (( $guess > $numb )); then
 
@@ -59,7 +59,7 @@ while (( $START == 1 )); do
     counter=$((counter+1))
     echo "the last number was $guess"
 
-  fi
+  fi 2> /dev/null
 
   if (( $guess < $numb )); then
 
@@ -68,7 +68,7 @@ while (( $START == 1 )); do
     counter=$((counter+1))
     echo "the last number was $guess"
 
-  fi
+  fi 2> /dev/null
 
   if [[ $guess == $ext ]]; then
 
@@ -78,6 +78,6 @@ while (( $START == 1 )); do
     sleep 5s
     exit
 
-  fi
+  fi 2> /dev/null
 
 done
