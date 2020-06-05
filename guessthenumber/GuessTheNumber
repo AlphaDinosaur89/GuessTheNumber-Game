@@ -1,0 +1,83 @@
+#!/bin/bash
+
+source /opt/Alphalib/alphalib.sh
+
+numb="$RANDOM"
+START="1"
+ext="ext"
+counter="0"
+
+ctrlc() {
+
+  clear
+  echo "you exit the game The number was $numb"
+  START="0"
+  sleep 5s
+  exit
+
+}
+
+trap ctrlc INT
+
+clear
+
+echo ""
+echo "Guess The Number Made by: AlphaDinosaur89"
+echo ""
+echo "To exit the game type ext or press ctrl+c"
+echo ""
+
+pause
+clear
+
+SECONDS="0"
+
+while (( $START == 1 )); do
+
+  echo "You shall put your guess now"
+
+  read guess
+
+  if (( $guess == $numb )); then
+
+    clear
+    echo "You win! the number was $numb"
+    counter=$((counter+1))
+    START="0"
+    echo "The number was $numb, you made $counter guess/guesses, you took $SECONDS seconds to finish"
+    cd ..
+    echo "The number was $numb, you made $counter guess/guesses, you took $SECONDS seconds to finish" > lastwin.md
+    sleep 5s
+    exit
+
+  fi
+
+  if (( $guess > $numb )); then
+
+    clear
+    echo "The number is lower"
+    counter=$((counter+1))
+    echo "the last number was $guess"
+
+  fi
+
+  if (( $guess < $numb )); then
+
+    clear
+    echo "The number is higer"
+    counter=$((counter+1))
+    echo "the last number was $guess"
+
+  fi
+
+  if [[ $guess == $ext ]]; then
+
+    clear
+    echo "you exit the game The number was $numb"
+    START="0"
+    sleep 5s
+    exit
+
+  fi
+
+done
