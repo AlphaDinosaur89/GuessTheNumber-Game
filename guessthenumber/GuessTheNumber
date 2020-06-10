@@ -4,7 +4,6 @@ numb="$RANDOM"
 START="1"
 ext="ext"
 counter="0"
-MINUTES="0"
 
 ctrlc() {
 
@@ -39,25 +38,18 @@ while (( $START == 1 )); do
 
   read guess
 
-  if [[ $SECONDS == 60 ]]; then
-    MINUTES=$((MINUTES+1))
-    SECONDS="0"
-  fi
-
-  if (( $SECONDS > 60 )); then
-    MINUTES="1"
-    SECONDS="0"
-  fi
-
   if (( $guess == $numb )); then
 
     clear
     echo "You win! the number was $numb"
     counter=$((counter+1))
     START="0"
-    echo "The number was $numb, you made $counter guess/guesses, you took $MINUTES:$SECONDS min/sec to finish"
+    echo "The number was $numb, you made $counter guess/guesses"
+    printf "Elapsed time: %d days %02d:%02d:%02d.\n" $((SECONDS/(24*60*60))) $(((SECONDS/(60*60))%24)) $(((SECONDS/60)%60)) $((SECONDS%60)) 
     cd ..
-    echo "The number was $numb, you made $counter guess/guesses, you took $MINUTES:$SECONDS min/sec to finish" > lastwin.md
+    echo "The number was $numb, you made $counter guess/guesses" > lastwin.md
+    printf "The number was $numb, you made $counter guess/guesses
+Elapsed time: %d days %02d:%02d:%02d.\n" $((SECONDS/(24*60*60))) $(((SECONDS/(60*60))%24)) $(((SECONDS/60)%60)) $((SECONDS%60))  > lastwin.md
     sleep 5s
     exit
 
